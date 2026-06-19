@@ -36,4 +36,21 @@ const deleteNote = (req, res) => {
     res.json({message: "Note deleted successfully"});
 };
 
+const updateNote = (req, res) => {
+    const id = Number(req.params.id);
+    const {title, content} = req.body;
+    const noteIndex = notes.findIndex((note) => note.id === id);
+    if (!title || !content) {
+        return res.status(400).json({error: "Title and content are required"});
+    }
+
+    if (noteIndex === -1){
+        return res.status(404).json({error: "Note not found"});
+    }
+    
+    note.title = title;
+    note.content = content;
+    res.json({message: "Note updated successfully", note});
+
+};
 module.exports = { getNotes, createNote, deleteNote };
