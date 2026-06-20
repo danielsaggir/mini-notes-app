@@ -83,7 +83,18 @@ function App() {
         onChange={(e) => setContent(e.target.value)}
         />
 
-        <button type="submit">Add Note</button>
+        <button type="submit">{editingNoteId ? "Update Note" : "Add Note"}</button>
+        {editingNoteId && (
+          <button 
+          type="button"
+          onClick={() => {
+            setEditingNoteId(null);
+            setTitle("");
+            setContent("");
+          }}>
+            Cancel Edit
+            </button>
+          )}
       </form>
       {notes.map((note) => (
         <div key={note.id}>
