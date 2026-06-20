@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import { fetchNotes, createNote, deleteNote, updateNote } from "./api/notesApi";
+import NoteForm from "./components/NoteForm";
+import NoteList from "./components/NoteList";
+import NoteItem from "./components/NoteItem";
+
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -70,40 +74,26 @@ function App() {
   return (
     <div>
       <h1>Mini Notes App</h1>
-      <form onSubmit={handleSubmit}>
-        <input 
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea 
-        placeholder="Content"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        />
-
-        <button type="submit">{editingNoteId ? "Update Note" : "Add Note"}</button>
-        {editingNoteId && (
-          <button 
-          type="button"
-          onClick={() => {
-            setEditingNoteId(null);
-            setTitle("");
-            setContent("");
-          }}>
-            Cancel Edit
-            </button>
-          )}
-      </form>
-      {notes.map((note) => (
-        <div key={note.id}>
-          <h3>{note.title}</h3>
-          <p>{note.content}</p>
-          <button onClick={() => handleEditClick(note)}>Update</button>
-          <button onClick={() => handleDelete(note.id)}>Delete</button>
-        </div>
-      ))}
+  
+      <NoteForm
+        title={title}
+        content={content}
+        editingNoteId={editingNoteId}
+        onTitleChange={setTitle}
+        onContentChange={setContent}
+        onSubmit={handleSubmit}
+        onCancelEdit={() => {
+          setEditingNoteId(null);
+          setTitle("");
+          setContent("");
+        }}
+      />
+  
+      <NoteList
+        notes={notes}
+        onEdit={handleEditClick}
+        onDelete={handleDelete}
+      />
     </div>
   );
 
