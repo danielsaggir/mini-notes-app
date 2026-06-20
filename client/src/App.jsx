@@ -10,13 +10,21 @@ function App() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [editingNoteId, setEditingNoteId] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const loadNotes = async () => {
-    try{
+    try {
+      setLoading(true);
+      setError("");
+  
       const data = await getNotes();
       setNotes(data);
     } catch (error) {
-      console.error("Error fetching notes:", error);
+      console.error(error.message);
+      setError("Failed to load notes");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -75,6 +83,10 @@ function App() {
     <div>
       <h1>Mini Notes App</h1>
   
+      {loading && <p>Loading notes...</p>}
+  
+      {error && <p>{error}</p>}
+  
       <NoteForm
         title={title}
         content={content}
@@ -96,6 +108,5 @@ function App() {
       />
     </div>
   );
-
 
 export default App;
