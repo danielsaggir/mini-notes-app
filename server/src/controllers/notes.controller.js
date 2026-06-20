@@ -47,10 +47,9 @@ const updateNote = (req, res) => {
     if (noteIndex === -1){
         return res.status(404).json({error: "Note not found"});
     }
-    
-    note.title = title;
-    note.content = content;
-    res.json({message: "Note updated successfully", note});
 
+    notes[noteIndex].title = title;
+    notes[noteIndex].content = content;
+    res.json(notes[noteIndex]);
 };
-module.exports = { getNotes, createNote, deleteNote };
+module.exports = { getNotes, createNote, deleteNote, updateNote };

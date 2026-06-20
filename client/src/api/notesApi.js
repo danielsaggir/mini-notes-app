@@ -13,7 +13,7 @@ export const fetchNotes = async () => {
 export const createNote = async (note) => {
     const response = await fetch (API_URL, {
         method: "POST",
-        header: {
+        headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(note),
@@ -41,7 +41,7 @@ export const deleteNote = async (id) => {
 export const updateNote = async (id, note) => {
     const response = await fetch (`${API_URL}/${id}`, {
         method: "PUT",
-        header: {
+        headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(note),

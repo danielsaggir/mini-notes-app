@@ -19,7 +19,7 @@ function App() {
       setLoading(true);
       setError("");
   
-      const data = await getNotes();
+      const data = await fetchNotes();
       setNotes(data);
     } catch (error) {
       console.error(error.message);
@@ -71,15 +71,6 @@ function App() {
       setContent(note.content);
     };
 
-    const handleUpdate = async (e) => {
-      e.preventDefault();
-      if (!title.trim() || !content.trim()) {
-        alert("Title and content are required");
-        return;
-      }
-    };
-  }
-
   return (
     <div className="app">
       <h1>Mini Notes App</h1>
@@ -109,5 +100,6 @@ function App() {
       />
     </div>
   );
+}
 
 export default App;
