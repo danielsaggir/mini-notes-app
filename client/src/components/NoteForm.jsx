@@ -8,7 +8,7 @@ function NoteForm({
     onCancelEdit,
   }) {
     return (
-      <form onSubmit={onSubmit}>
+      <form className="note-form" onSubmit={onSubmit}>
         <input
           type="text"
           placeholder="Title"

@@ -1,6 +1,6 @@
 function NoteItem({ note, onEdit, onDelete }) {
     return (
-      <div>
+      <div className="note-card">
         <h3>{note.title}</h3>
         <p>{note.content}</p>
   

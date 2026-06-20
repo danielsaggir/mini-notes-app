@@ -2,7 +2,7 @@ import NoteItem from "./NoteItem";
 
 function NoteList({ notes, onEdit, onDelete }) {
   return (
-    <div>
+    <div className="notes-list">
       {notes.map((note) => (
         <NoteItem
           key={note.id}

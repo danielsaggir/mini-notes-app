@@ -3,6 +3,7 @@ import { fetchNotes, createNote, deleteNote, updateNote } from "./api/notesApi";
 import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
 import NoteItem from "./components/NoteItem";
+import "./App.css";
 
 
 function App() {
@@ -80,12 +81,12 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="app">
       <h1>Mini Notes App</h1>
   
-      {loading && <p>Loading notes...</p>}
+      {loading && <p className="loading">Loading notes...</p>}
   
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
   
       <NoteForm
         title={title}
